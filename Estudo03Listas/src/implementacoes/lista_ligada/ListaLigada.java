@@ -12,6 +12,11 @@ public class ListaLigada implements Lista{
 	Node ultimoNode = null;
 	
 	@Override
+	public boolean isEmpty() {
+		return tamanho==0;
+	}
+
+	@Override
 	public int size() {
 		return tamanho;
 	}
@@ -55,6 +60,7 @@ public class ListaLigada implements Lista{
 		}
 		Node novoNode = new Node(e);
 		ultimoNode.next = novoNode;
+		ultimoNode = novoNode;
 		
 		tamanho++;
 	}

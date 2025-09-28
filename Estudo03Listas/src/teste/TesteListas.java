@@ -25,11 +25,17 @@ public class TesteListas {
 		System.out.println(lista.size());
 		
 		System.out.println("\nAdicionando elementos na lista pushUltimo:");
-		lista.pushUltimo(5);
+		lista.pushUltimo(1);
+		System.out.println("\nAdicionando elementos na lista pushUltimo:");
+		lista.pushUltimo(2);
 		System.out.println("\nAdicionando elementos na lista pushUltimo:");
 		lista.pushUltimo(3);
+		System.out.println("\nAdicionando elementos na lista pushUltimo:");
+		lista.pushUltimo(4);
+		System.out.println("\nAdicionando elementos na lista pushUltimo:");
+		lista.pushUltimo(5);
 		System.out.println("\nAdicionando elementos na lista pushPrimeiro:");
-		lista.pushPrimeiro(7);
+		lista.pushPrimeiro(-1);
 		
 		System.out.println("\nImprimindo tamanho da lista:");
 		System.out.println(lista.size());

@@ -11,6 +11,11 @@ public class ListaArray implements Lista{
 	int[] elementos = new int[tamanhoMaximo];
 	
 	@Override
+	public boolean isEmpty() {
+		return tamanho==0;
+	}
+
+	@Override
 	public int size() {
 		return tamanho;
 	}
@@ -58,16 +63,16 @@ public class ListaArray implements Lista{
 	
 	private void checkTamanhoMaximo() {
 		if(tamanho>tamanhoMaximo-2)
-			aumentaTamanhoMaximo();
+			dobraTamanhoMaximo();
 		if(tamanho<tamanhoMaximo/4)
-			diminuiTamanhoMaximo();
+			divideTamanhoMaximo();
 	}
 	
-	private void aumentaTamanhoMaximo() {
+	private void dobraTamanhoMaximo() {
 		setTamanhoMaximo(2*(tamanhoMaximo+1));
 	}
 	
-	private void diminuiTamanhoMaximo() {
+	private void divideTamanhoMaximo() {
 		setTamanhoMaximo(tamanhoMaximo/2 + 1);
 	}
 	
@@ -77,6 +82,7 @@ public class ListaArray implements Lista{
 			novosElementos[i] = elementos[i];
 		}
 		elementos = novosElementos;
+		tamanhoMaximo = n;
 	}
 
 	@Override

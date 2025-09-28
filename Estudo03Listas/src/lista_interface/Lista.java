@@ -2,6 +2,7 @@ package lista_interface;
 
 public interface Lista extends Iterable<Integer>{
 	
+	boolean isEmpty();
 	int size();
 	
 	int get(int i);

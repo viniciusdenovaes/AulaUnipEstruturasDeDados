@@ -1,9 +1,9 @@
 package implementacao.fila;
 
+import interfaces.Fila;
 import interfaces.Node;
-import interfaces.Pilha;
 
-public class FilaListaLigada implements Pilha {
+public class FilaListaLigada implements Fila {
 
     private Node primeiro = null;
     private Node ultimo = null;

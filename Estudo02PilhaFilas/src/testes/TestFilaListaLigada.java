@@ -1,12 +1,12 @@
 package testes;
 
 import implementacao.fila.FilaListaLigada;
-import interfaces.Pilha;
+import interfaces.Fila;
 
 public class TestFilaListaLigada {
 
     public static void main(String[] args) {
-        Pilha p = new FilaListaLigada();
+        Fila p = new FilaListaLigada();
 
         p.push(1);
         p.push(2);

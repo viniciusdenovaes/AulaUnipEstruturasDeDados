@@ -1,9 +1,9 @@
 package estruturas;
 
-public class TreeNode<T> {
-    public T element;
-    public TreeNode<T> left = null, right = null;
-    public TreeNode(T aElement){
+public class TreeNode {
+    public int element;
+    public TreeNode left = null, right = null;
+    public TreeNode(int aElement){
         element = aElement;
     }
 }

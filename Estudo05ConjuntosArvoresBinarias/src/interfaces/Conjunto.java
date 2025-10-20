@@ -1,10 +1,10 @@
 package interfaces;
 
-public interface Conjunto<T extends Comparable<T>> extends Iterable<T> {
+public interface Conjunto {
 
     boolean isEmpty();
     int size();
-    void add(T e);
-    boolean contains(T e);
+    void add(int e);
+    boolean contains(int e);
 
 }

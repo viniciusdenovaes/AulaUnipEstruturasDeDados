@@ -43,8 +43,11 @@ public class ListaLigada implements Lista{
 
 	@Override
 	public void delete(int index) {
-		if(index==0)
+		if(index==0) {
 			primeiroNode = primeiroNode.next;
+			tamanho--;
+			return;
+		}
 		
 		Node nodeAnterior = getNode(index-1);
 		nodeAnterior.next = getNode(index).next;

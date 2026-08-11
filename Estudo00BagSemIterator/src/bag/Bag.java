@@ -5,7 +5,7 @@ package bag;
  * Colecao que guarda, no maximo, 5 elementos
  * ignora qualquer elemento adicionado posteriormente
  * */
-public interface Bag extends Iterable<Integer>{
+public interface Bag{
 	
 	static final int TAMANHO_MAX = 5;
 	boolean isEmpty();

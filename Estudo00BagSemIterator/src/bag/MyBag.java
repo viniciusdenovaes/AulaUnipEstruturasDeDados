@@ -1,7 +1,5 @@
 package bag;
 
-import java.util.Iterator;
-
 public class MyBag implements Bag{
 	
 	int tamanho = 0;
@@ -15,6 +13,7 @@ public class MyBag implements Bag{
 	public boolean isFull() {
 		return tamanho==Bag.TAMANHO_MAX;
 	}
+
 
 	@Override
 	public int size() {
@@ -32,32 +31,11 @@ public class MyBag implements Bag{
 	@Override
 	public String toString() {
 		String res = "[";
-		for(int e:this)
-			res += e + ", ";
+		for(int i=0; i<tamanho; i++)
+			res += elementos[i] + ", ";
 		res += "]";
 		return res;
 	}
 
-	@Override
-	public Iterator<Integer> iterator() {
-		return new MyBagIterator();
-	}
-	
-	class MyBagIterator implements Iterator<Integer>{
-		int i=0;
-
-		@Override
-		public boolean hasNext() {
-			return i<tamanho;
-		}
-
-		@Override
-		public Integer next() {
-			int res = elementos[i];
-			i++;
-			return res;
-		}
-		
-	}
 
 }

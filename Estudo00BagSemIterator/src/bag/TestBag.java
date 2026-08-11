@@ -14,9 +14,6 @@ public class TestBag {
 		System.out.println(bag.isEmpty());
 		System.out.println("\nEsta cheia?");
 		System.out.println(bag.isFull());
-		System.out.println("\nIterando na Bag");
-		for(int i: bag) System.out.println(i);
-		
 		
 		System.out.println("\nAdicionando elemento: 1, 2");
 		bag.add(1);
@@ -30,8 +27,6 @@ public class TestBag {
 		System.out.println(bag.isEmpty());
 		System.out.println("\nEsta cheia?");
 		System.out.println(bag.isFull());
-		System.out.println("\nIterando na Bag");
-		for(int i: bag) System.out.println(i);
 		
 		System.out.println("\nAdicionando elemento: 3, 4, 5");
 		bag.add(3);
@@ -46,8 +41,6 @@ public class TestBag {
 		System.out.println(bag.isEmpty());
 		System.out.println("\nEsta cheia?");
 		System.out.println(bag.isFull());
-		System.out.println("\nIterando na Bag");
-		for(int i: bag) System.out.println(i);
 		
 		
 		System.out.println("\nAdicionando elemento: 6, 7");
@@ -62,8 +55,6 @@ public class TestBag {
 		System.out.println(bag.isEmpty());
 		System.out.println("\nEsta cheia?");
 		System.out.println(bag.isFull());
-		System.out.println("\nIterando na Bag");
-		for(int i: bag) System.out.println(i);
 		
 		
 	}

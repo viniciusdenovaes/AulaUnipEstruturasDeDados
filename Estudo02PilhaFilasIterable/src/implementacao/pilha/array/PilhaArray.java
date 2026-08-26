@@ -1,7 +1,5 @@
 package implementacao.pilha.array;
 
-import java.util.EmptyStackException;
-
 import interfaces.Pilha;
 
 public class PilhaArray implements Pilha {
@@ -20,7 +18,6 @@ public class PilhaArray implements Pilha {
     }
 
     private void resize(int cap){
-    	if(cap<1) return;
         int[] outros = new int[cap];
         for(int i=0; i<tamanho; i++){
             outros[i] = elementos[i];
@@ -39,31 +36,15 @@ public class PilhaArray implements Pilha {
 
     @Override
     public int pop() {
-    	if(isEmpty()) {
-    		throw new EmptyStackException();
-    	}
-        
-    	int res = elementos[tamanho-1];
-        
-        if(tamanho<elementos.length/2-1){
-            resize(elementos.length/2);
+        if(tamanho<elementos.length/4){
+            resize(elementos.length/2 + 1);
         }
-        
         tamanho--;
-        
-        return res;
+        return elementos[tamanho];
     }
 
     @Override
     public int peek() {
         return elementos[tamanho-1];
-    }
-    
-    @Override
-    public String toString() {
-    	String res = "[";
-    	for(int i=0; i<tamanho; i++)
-    		res += elementos[i] + ", ";
-    	return res + "]";
     }
 }

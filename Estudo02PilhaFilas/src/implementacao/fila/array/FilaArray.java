@@ -1,10 +1,10 @@
-package implementacao.pilha.array;
+package implementacao.fila.array;
 
 import java.util.EmptyStackException;
 
-import interfaces.Pilha;
+import interfaces.Fila;
 
-public class PilhaArray implements Pilha {
+public class FilaArray implements Fila {
 
     int tamanho = 0;
     int[] elementos = new int[1];
@@ -43,20 +43,21 @@ public class PilhaArray implements Pilha {
     		throw new EmptyStackException();
     	}
         
-    	int res = elementos[tamanho-1];
+    	int res = elementos[0];
+        for(int i=1; i<tamanho; i++)
+        	elementos[i-1] = elementos[i];
         
         if(tamanho<elementos.length/2-1){
             resize(elementos.length/2);
         }
         
         tamanho--;
-        
         return res;
     }
 
     @Override
     public int peek() {
-        return elementos[tamanho-1];
+        return elementos[0];
     }
     
     @Override

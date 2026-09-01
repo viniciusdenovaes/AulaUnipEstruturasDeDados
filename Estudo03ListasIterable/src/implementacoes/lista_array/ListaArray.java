@@ -1,15 +1,12 @@
 package implementacoes.lista_array;
 
-import java.util.Iterator;
-
 import lista_interface.Lista;
 
 public class ListaArray implements Lista{
-
-	int tamanho = 0;
-	int tamanhoMaximo = 1;
-	int[] elementos = new int[tamanhoMaximo];
 	
+	int[] elementos = new int[2];
+	int tamanho = 0;
+
 	@Override
 	public boolean isEmpty() {
 		return tamanho==0;
@@ -26,95 +23,108 @@ public class ListaArray implements Lista{
 	}
 
 	@Override
-	public void set(int element, int index) {
+	public void set(int index, int element) {
 		elementos[index] = element;
 	}
 
 	@Override
-	public void delete(int index) {
-		for(int i=index; i<tamanho-1; i++)
-			elementos[i] = elementos[i+1];
-		diminuiTamanho();
-	}
-
-	@Override
 	public void pushUltimo(int e) {
-		elementos[tamanho] = e;
-		aumentaTamanho();
+		if(tamanho>=elementos.length)
+			resize(2*elementos.length);
+		elementos[tamanho++] = e;
 	}
 
 	@Override
 	public void pushPrimeiro(int e) {
-		for(int i=tamanho; i>0; i--) 
-			elementos[i] = elementos[i-1];
-		elementos[0] = e;
-		aumentaTamanho();
-	}
-	
-	private void aumentaTamanho() {
-		tamanho++;
-		checkTamanhoMaximo();
-	}
-	
-	private void diminuiTamanho() {
-		tamanho--;
-		checkTamanhoMaximo();
-	}
-	
-	private void checkTamanhoMaximo() {
-		if(tamanho>tamanhoMaximo-2)
-			dobraTamanhoMaximo();
-		if(tamanho<tamanhoMaximo/4)
-			divideTamanhoMaximo();
-	}
-	
-	private void dobraTamanhoMaximo() {
-		setTamanhoMaximo(2*(tamanhoMaximo+1));
-	}
-	
-	private void divideTamanhoMaximo() {
-		setTamanhoMaximo(tamanhoMaximo/2 + 1);
-	}
-	
-	private void setTamanhoMaximo(int n) {
-		int[] novosElementos = new int[n];
-		for(int i=0; i<tamanho; i++) {
-			novosElementos[i] = elementos[i];
-		}
-		elementos = novosElementos;
-		tamanhoMaximo = n;
+		insert(0, e);
 	}
 
 	@Override
+	public int popUltimo() {
+		if(tamanho<elementos.length/2)
+			resize(elementos.length/2);
+		
+		int res = elementos[tamanho-1];
+		tamanho--;
+		return res;
+	}
+
+	@Override
+	public int popPrimeiro() {
+		int res = elementos[0];
+		removeAt(0);
+		return res;
+	}
+
+	@Override
+	public void insert(int index, int element) {
+		if(tamanho>=elementos.length)
+			resize(2*elementos.length);
+		
+		// passando os elemento depois de index um espaco para a direita
+		for(int i=tamanho; i>index; i--)
+			elementos[i] = elementos[i-1];
+		
+		elementos[index] = element;
+		tamanho++;
+	}
+
+	@Override
+	public void removeAt(int index) {
+		// passando os elemento depois de index um espaco para a esquerda
+		for(int i=index; i<tamanho; i++)
+			elementos[i] = elementos[i+1];
+		
+		tamanho--;
+	}
+
+	@Override
+	public boolean removeElement(int element) {
+		int index = indexOf(element);
+		if(index==-1)
+			return false;
+		else {
+			removeAt(index);
+			return true;
+		}
+	}
+
+	@Override
+	public boolean contains(int element) {
+		return indexOf(element)!=-1;
+	}
+	
+	// retorna o indice do elemento
+	// retorna -1 caso o element nao esteja
+	private int indexOf(int element) {
+		
+		for(int i=0; i<tamanho; i++)
+			if(elementos[i] == element)
+				return i;
+		
+		return -1;
+	}
+	
+	private void resize(int novaCapacidade) {
+		
+		if(novaCapacidade<1)return;
+		
+		int[] novosElementos = new int[novaCapacidade];
+		for(int i=0; i<tamanho; i++)
+			novosElementos[i] = elementos[i];
+		
+		elementos = novosElementos;
+	}
+	
+	
+	@Override
 	public String toString() {
-		String res = "[";
-		for(int e: elementos)
-			res += ", ";
-		res+="]";
+		String res = "ListaArray[";
+		for(int i=0; i<tamanho;i++)
+			res+= elementos[i] + ", ";
+		res += "] ";
 		return res;
 	}
 	
-	@Override
-	public Iterator<Integer> iterator() {
-		return new ListaArrayIterator();
-	}
 	
-	class ListaArrayIterator implements Iterator<Integer>{
-
-		int posicao = 0;
-		
-		@Override
-		public boolean hasNext() {
-			return posicao<tamanho;
-		}
-
-		@Override
-		public Integer next() {
-			int res = elementos[posicao];
-			posicao++;
-			return res;
-		}
-		
-	}
-
 }

@@ -1,6 +1,6 @@
 package lista_interface;
 
-public interface Lista extends Iterable<Integer>{
+public interface Lista{
 	
 	boolean isEmpty();
 	int size();

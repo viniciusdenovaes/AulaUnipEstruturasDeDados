@@ -60,11 +60,6 @@ public class TesteListas {
 		lista.removeAt(1);
 		System.out.println(lista);
 		
-		System.out.println("Iterando na lista");
-		for(int e: lista) {
-			System.out.println(e);
-		}
-		
 		
 	}
 

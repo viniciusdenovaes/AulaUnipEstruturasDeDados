@@ -1,5 +1,7 @@
 package implementacoes.lista_array;
 
+import java.util.Iterator;
+
 import lista_interface.Lista;
 
 public class ListaArray implements Lista{
@@ -120,10 +122,31 @@ public class ListaArray implements Lista{
 	@Override
 	public String toString() {
 		String res = "ListaArray[";
-		for(int i=0; i<tamanho;i++)
-			res+= elementos[i] + ", ";
+		for(var e: this)
+			res+= e + ", ";
 		res += "] ";
 		return res;
+	}
+
+	@Override
+	public Iterator<Integer> iterator() {
+		return new MeuIterador();
+	}
+	
+	class MeuIterador implements Iterator<Integer>{
+		
+		int itIndex = 0;
+
+		@Override
+		public boolean hasNext() {
+			return itIndex<tamanho;
+		}
+
+		@Override
+		public Integer next() {
+			return elementos[itIndex++];
+		}
+		
 	}
 	
 	

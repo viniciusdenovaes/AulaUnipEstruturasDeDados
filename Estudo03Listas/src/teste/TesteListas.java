@@ -1,7 +1,6 @@
 package teste;
 
 import implementacoes.lista_array.ListaArray;
-import implementacoes.lista_ligada.ListaLigada;
 import lista_interface.Lista;
 
 public class TesteListas {
@@ -10,49 +9,57 @@ public class TesteListas {
 	
 	public static void main(String[] args) {
 		Lista listaArray = new ListaArray();
-		System.out.println("\nTestando Lista Array:");
+		System.out.println("\n\nTestando Lista Array:");
 		testaLista(listaArray);
-
-		Lista listaLigada = new ListaLigada();
-		System.out.println("\nTestando Lista Ligada:");
-		testaLista(listaLigada);
 
 	}
 	
 	public static void testaLista(Lista lista) {
 		
-		System.out.println("\nImprimindo tamanho da lista:");
-		System.out.println(lista.size());
+		System.out.println("size: " + lista.size());
+		System.out.println("isEmpty? " + lista.isEmpty());
+		System.out.println(lista);
 		
-		System.out.println("\nAdicionando elementos na lista pushUltimo:");
+		System.out.println("push ultimo 1 2 3");
 		lista.pushUltimo(1);
-		System.out.println("\nAdicionando elementos na lista pushUltimo:");
 		lista.pushUltimo(2);
-		System.out.println("\nAdicionando elementos na lista pushUltimo:");
 		lista.pushUltimo(3);
-		System.out.println("\nAdicionando elementos na lista pushUltimo:");
-		lista.pushUltimo(4);
-		System.out.println("\nAdicionando elementos na lista pushUltimo:");
-		lista.pushUltimo(5);
-		System.out.println("\nAdicionando elementos na lista pushPrimeiro:");
-		lista.pushPrimeiro(-1);
+		System.out.println("size: " + lista.size());
+		System.out.println("isEmpty? " + lista.isEmpty());
+		System.out.println(lista);
 		
-		System.out.println("\nImprimindo tamanho da lista:");
-		System.out.println(lista.size());
+		System.out.println("push primeiro 4 5 6");
+		lista.pushPrimeiro(4);
+		lista.pushPrimeiro(5);
+		lista.pushPrimeiro(6);
+		System.out.println(lista);
 		
-		System.out.println("\nIterando na lista:");
-		for(int e: lista) 
-			System.out.println(e);
+		System.out.println("pop ultimo: " + lista.popUltimo());
+		System.out.println("pop primeiro: " + lista.popPrimeiro());
+		System.out.println(lista);
 		
-		System.out.println("\nApagando segunda posicao:");
-		lista.delete(1);
+		System.out.println("qual elemento esta na posicao 1? " + lista.get(1));
+		System.out.println("Colocando o 10 naposicao 1");
+		lista.set(1, 10);
+		System.out.println(lista);
 		
-		System.out.println("\nIterando na lista:");
-		for(int e: lista) 
-			System.out.println(e);
+		System.out.println("inserindo o 20 na posicao 1");
+		lista.insert(1, 20);
+		System.out.println(lista);
 		
-		System.out.println("\nOlhando segunda posicao:");
-		System.out.println(lista.get(1));
+		System.out.println("lista contem o 30? " + lista.contains(30));
+		System.out.println("lista contem o 20? " + lista.contains(20));
+		
+		System.out.println("removendo o 20: " + lista.removeElement(20));
+		System.out.println("lista contem o 20? " + lista.contains(20));
+		System.out.println("removendo o 20: " + lista.removeElement(20));
+		System.out.println("lista contem o 20? " + lista.contains(20));
+		System.out.println(lista);
+		
+		System.out.println("removendo o elemento na posicao 1");
+		lista.removeAt(1);
+		System.out.println(lista);
+		
 		
 	}
 

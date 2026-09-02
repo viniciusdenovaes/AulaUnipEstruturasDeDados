@@ -1,6 +1,7 @@
 package teste;
 
 import implementacoes.lista_array.ListaArray;
+import implementacoes.lista_ligada.ListaLigada;
 import lista_interface.Lista;
 
 public class TesteListas {
@@ -8,14 +9,15 @@ public class TesteListas {
 	
 	
 	public static void main(String[] args) {
-		Lista listaArray = new ListaArray();
-		System.out.println("\n\nTestando Lista Array:");
-		testaLista(listaArray);
+//		Lista lista = new ListaArray();
+		Lista lista = new ListaLigada();
 
+		testaLista(lista);
 	}
 	
 	public static void testaLista(Lista lista) {
 		
+		System.out.println("testando " + lista.getClass().getName());
 		System.out.println("size: " + lista.size());
 		System.out.println("isEmpty? " + lista.isEmpty());
 		System.out.println(lista);
@@ -60,10 +62,8 @@ public class TesteListas {
 		lista.removeAt(1);
 		System.out.println(lista);
 		
-		System.out.println("Iterando na lista");
-		for(int e: lista) {
+		for(var e: lista)
 			System.out.println(e);
-		}
 		
 		
 	}

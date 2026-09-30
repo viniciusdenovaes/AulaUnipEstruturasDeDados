@@ -11,6 +11,15 @@ public class SortUtils {
 		a[j] = tmp;
 	}
 	
+	// array to string
+	public static String aToString(int[] a) {
+		String res = "";
+		for(int e: a)
+			res += e + ", ";
+		res += "]";
+		return res;
+	}
+	
 	
 	// Cria um array de tamanho size com elementos de 0 a size
 	public static int[] createRandomArray(int size) {
@@ -34,5 +43,24 @@ public class SortUtils {
 		return a;
 	}
 	
+	// Cria um array de tamanho size com elementos de 0 a size quase ordenado
+	public static int[] createQuasiNotRandomArray(int size) {
+		int[] aOrdenado = new int[size];
+		for(int i=0; i<aOrdenado.length; i++) {
+			aOrdenado[i] = i;
+		}
+		return quasiNotShuffleArray(aOrdenado);
+	}
+	
+	public static int[] quasiNotShuffleArray(int[] a) {
+		Random rand = new Random();
+		
+		for (int i=1; i<a.length; i++) {
+			if(rand.nextBoolean())
+				swap(a, i-1, i);
+        }
+		
+		return a;
+	}
 
 }

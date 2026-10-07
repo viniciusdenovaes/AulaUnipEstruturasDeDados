@@ -12,7 +12,7 @@ public class SelectionSort implements SortMachine {
 					minIndex = j;
 				}
 			}
-			SortUtils.swap(a, i, minIndex);
+			ArrayUtils.swap(a, i, minIndex);
 		}
 		return a;
 	}

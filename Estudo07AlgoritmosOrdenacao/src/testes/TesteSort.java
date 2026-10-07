@@ -2,31 +2,96 @@ package testes;
 
 import java.time.Duration;
 import java.time.Instant;
+import java.util.List;
 
+import arrayutils.ArrayCreator;
+import sorts.ArrayUtils;
+import sorts.InsertionSort;
+import sorts.MergeSort;
+import sorts.SelectionSort;
 import sorts.SortMachine;
-import sorts.SortUtils;
 
 public class TesteSort {
 	
-	// Retorna tempo em milisegundos
-	public static long testaSort(SortMachine sortMachine, int[] a) {
+	static final int testeQtd = 1_000;
+	static final int arraysSize = 10_000;
+	
+	public static void main(String[] args) {
+		runSorts();
+	}
+	
+	// Retorna tempo em nanosegundos
+	public static long timeSort(SortMachine sortMachine, int[] array) {
 		
-//		System.out.println("Array antes de ordenar");
-//		System.out.println(SortUtils.aToString(a));
-		System.out.println("Comecando ordenacao " + sortMachine.getClass().getName());
+		if(array.length<20 && testeQtd<2) 
+			System.out.println("Ordenando array " + ArrayUtils.aToString(array));
 		
 		Instant start = Instant.now();
-		int[] aOrdenado = sortMachine.sort(a);
+		int[] aOrdenado = sortMachine.sort(array);
 		Instant end = Instant.now();
 		
-		long timeElapsedMilli = Duration.between(start, end).toMillis();
+		long timeElapsedNano = Duration.between(start, end).toNanos();
 		
-		if(!isSorted(aOrdenado)) {
-			throw new AssertionError("SortMachine"+sortMachine+" nao ordenou o array: " + SortUtils.aToString(aOrdenado));
-		}
-		System.out.println("array ordenado com sucesso em " + timeElapsedMilli + " mili segundos");
+		if(array.length<20 && testeQtd<2) 
+			System.out.println("array ordenado:" + ArrayUtils.aToString(array));
 		
-		return timeElapsedMilli;
+		if(!isSorted(aOrdenado)) 
+			throw new AssertionError("SortMachine"+sortMachine+" nao ordenou o array: " + ArrayUtils.aToString(aOrdenado));
+		
+		return timeElapsedNano;
+	}
+	
+	public static void runSorts() {
+		List<SortMachine> sortMachines = List.of(
+				new SelectionSort(), 
+				new InsertionSort(),
+				new MergeSort()
+				);
+		List<ArrayCreator> arrayCreators = List.of(
+				// cria arrays completamente aleatorios
+				new ArrayCreator(),
+				// cria arrays quase aleatorios
+				new ArrayCreator(new ArrayCreator.LowRandomShuffler())
+				);
+		
+		mBenchTime(arrayCreators, sortMachines);
+		
+	}
+	
+	public static void mBenchTime(
+			List<ArrayCreator> arrayCreators, 
+			List<SortMachine> sortMachines
+			) {
+		
+		for(var ac: arrayCreators)
+			mBenchTimeArray(ac, sortMachines);
+	}
+	
+	public static void mBenchTimeArray(
+			ArrayCreator arrayCreator, 
+			List<SortMachine> sortMachines
+			) {
+		
+		System.out.println("criando " + testeQtd + " arrays de tamanho " + arraysSize);
+		int[][] arrays = arrayCreator.createNRandomArrays(testeQtd, arraysSize);
+		System.out.println("array shuffled com " + arrayCreator);
+		
+		for(var sm: sortMachines)
+			mBenchTimeArray(sm, arrays);
+	}
+	
+	
+	public static void mBenchTimeArray(
+			SortMachine sortMachine, 
+			int[][] arrays) {
+		
+		System.out.println("ordenando com " + sortMachine.getClass().getName());
+		
+		long avgTime = 0;
+		for(var a:arrays)
+			avgTime += timeSort(sortMachine, a.clone()) / testeQtd;
+		System.out.println("Tempo:" + avgTime + " nanosegundos");
+		
 	}
 	
 	public static boolean isSorted(int[] lista) {

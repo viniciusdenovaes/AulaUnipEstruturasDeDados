@@ -1,4 +1,4 @@
-package estruturas;
+package implementacoes;
 
 public class TreeNode {
     public int element;

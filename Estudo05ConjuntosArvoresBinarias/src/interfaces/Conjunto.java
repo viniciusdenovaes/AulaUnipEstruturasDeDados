@@ -6,5 +6,7 @@ public interface Conjunto {
     int size();
     void add(int e);
     boolean contains(int e);
+    int maior();
+    int menor();
 
 }

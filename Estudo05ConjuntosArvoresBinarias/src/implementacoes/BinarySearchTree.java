@@ -1,6 +1,5 @@
 package implementacoes;
 
-import estruturas.TreeNode;
 import interfaces.Conjunto;
 
 public class BinarySearchTree implements Conjunto{
@@ -62,5 +61,27 @@ public class BinarySearchTree implements Conjunto{
         else   if(e>subRoot.element)   return contains(subRoot.right, e);
         else /*if(e<subRoot.element)*/ return contains(subRoot.left, e);
     }
+    
+    @Override
+    public int maior() {
+    	return maior(root);
+    }
+    
+    private int maior(TreeNode subRoot) {
+    	if(subRoot.right==null) return subRoot.element;
+    	return maior(subRoot.right);
+    }
+    
+    @Override
+    public int menor() {
+    	return menor(root);
+    }
+    
+    private int menor(TreeNode subRoot) {
+    	if(subRoot.left==null) return subRoot.element;
+    	return menor(subRoot.left);
+    }
+    
+    
 
 }

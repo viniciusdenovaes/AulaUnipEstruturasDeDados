@@ -48,6 +48,9 @@ public class TestBinarySearchTree {
         
         System.out.println("Contains -1?");
         System.out.println(conjunto.contains(-1));
+        
+        System.out.println("maior: " + conjunto.maior());
+        System.out.println("menor: " + conjunto.menor());
     }
     
 }
